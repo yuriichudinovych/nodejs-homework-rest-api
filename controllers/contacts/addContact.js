@@ -1,13 +1,7 @@
-const contactOperation = require("../../models/contacts");
-const { BadRequest } = require("http-errors");
-const { contactSchema } = require("../../schemas/contacts");
-const addContact = async (req, res, next) => {
-  const { error } = contactSchema.validate(req.body);
+const { Contact } = require("../../models");
 
-  if (error) {
-    throw BadRequest(error.message);
-  }
-  const result = await contactOperation.addContact(req.body);
+const addContact = async (req, res, next) => {
+  const result = await Contact.create(req.body);
   res.status(201).json({
     status: "success",
     code: 201,

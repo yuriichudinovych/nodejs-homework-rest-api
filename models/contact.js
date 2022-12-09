@@ -21,7 +21,7 @@ const contactSchema = Schema(
 );
 
 const joiSchema = Joi.object({
-  name: Joi.string.required(),
+  name: Joi.string().required(),
   email: Joi.string()
     .email({
       minDomainSegments: 2,
@@ -32,8 +32,13 @@ const joiSchema = Joi.object({
   favorite: Joi.bool(),
 });
 
+const statusJoiSchema = Joi.object({
+  favorite: Joi.bool().required(),
+});
+
 const Contact = model("contact", contactSchema);
 module.exports = {
   Contact,
   joiSchema,
+  statusJoiSchema,
 };
