@@ -3,8 +3,7 @@ const { Conflict } = require("http-errors");
 const bcrypt = require("bcryptjs");
 
 const register = async (req, res) => {
-  const { email, password, subscription } = req.body;
-  console.log(email);
+  const { email, password, subscription = "starter" } = req.body;
   const user = await User.findOne({ email });
   if (user) {
     throw new Conflict(`Email in use`);
@@ -19,7 +18,7 @@ const register = async (req, res) => {
   res.status(201).json({
     status: "success",
     code: 201,
-    ResponseBody: {
+    data: {
       user: {
         email,
         subscription,
