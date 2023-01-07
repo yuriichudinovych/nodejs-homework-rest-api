@@ -5,7 +5,6 @@ const gravatar = require("gravatar");
 
 const register = async (req, res) => {
   const { email, password, subscription = "starter" } = req.body;
-  console.log(req.file);
   const user = await User.findOne({ email });
   if (user) {
     throw new Conflict(`Email in use`);
