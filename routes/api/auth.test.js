@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const mongoose = require("mongoose");
 const request = require("supertest");
 require("dotenv").config();
@@ -8,6 +9,7 @@ const { User } = require("../../models");
 
 const { DB_TEST_HOST, PORT } = process.env;
 
+// eslint-disable-next-line no-undef
 describe("test auth routes", () => {
   let server;
   beforeAll(() => (server = app.listen(PORT)));
