@@ -1,4 +1,5 @@
 const { User } = require("../../models");
+const { NotFound } = require("http-errors");
 const updateSub = async (req, res, next) => {
   const { _id } = req.user;
 
@@ -12,7 +13,7 @@ const updateSub = async (req, res, next) => {
     }
   );
   if (!result) {
-    throw new NotFound(`User with id=${contactId} not found`);
+    throw new NotFound(`User with id=${_id} not found`);
   }
   res.json({
     status: "success",
